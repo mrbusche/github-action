@@ -13,19 +13,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4
         with:
           fetch-depth: 0
       - name: Lint commit messages
-        uses: wagoid/commitlint-github-action@v3.0.6
+        uses: wagoid/commitlint-github-action@b50220da863dbe1b08a91be6abbab41446ae5833 # v3.0.6
 
   lint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4
       - name: Setup node
-        uses: actions/setup-node@v2.1.5
+        uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea # v2.1.5
         with:
           node-version: '12.x'
       - name: Install project
@@ -41,7 +41,7 @@ jobs:
         configurationFile: [example/renovate-config.js, example/renovate.json]
     steps:
       - name: Checkout
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4
       - name: Install project
         run: npm ci
       - name: Build
@@ -69,7 +69,7 @@ jobs:
       && github.ref == 'refs/heads/master'
     steps:
       - name: Checkout
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4
         with:
           fetch-depth: 0
           ref: 'release'
@@ -83,7 +83,7 @@ jobs:
         run: |
           git merge -m 'chore(release): merge master (${{ github.sha }})' ${{ github.sha }}
       - name: Setup node
-        uses: actions/setup-node@v2.1.5
+        uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea # v2.1.5
         with:
           node-version: '12.x'
       - name: Install project
@@ -104,7 +104,7 @@ jobs:
       - name: Publish release
         run: git push --follow-tags
       - name: Publish GitHub release
-        uses: actions/create-release@v1.1.4
+        uses: actions/create-release@0cb9c9b65d5d1901c1f53e5e66eaf4afd303e70e # v1.1.4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
